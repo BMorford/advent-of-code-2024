@@ -3,10 +3,10 @@
 IEnumerable<string> input = File.ReadLines("./input.txt");
 
 var reports = input.Select(line => line.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(level => int.Parse(level))).ToList();
-Func<int, bool> acceptableRange = x => Math.Abs(x) >= 1 && Math.Abs(x) <= 3;
 
+// Part 1
+Func<int, bool> acceptableRange = x => Math.Abs(x) >= 1 && Math.Abs(x) <= 3;
 int safeReports = 0;
-int safeDampenedReports = 0;
 foreach (List<int> report in reports.Select(r => r.ToList()))
 {
     int totalCells = report.Count - 1;
@@ -18,6 +18,10 @@ foreach (List<int> report in reports.Select(r => r.ToList()))
     }
 }
 
+Console.WriteLine(safeReports);
+
+// Part 2
+int safeDampenedReports = 0;
 foreach (ImmutableList<int> report in reports.Select(r => r.ToImmutableList()))
 {
     int totalCells = report.Count - 1;
@@ -29,7 +33,6 @@ foreach (ImmutableList<int> report in reports.Select(r => r.ToImmutableList()))
     }
 }
 
-Console.WriteLine(safeReports);
 Console.WriteLine(safeDampenedReports);
 
 static int GetSafeCellCount(List<int> report)
