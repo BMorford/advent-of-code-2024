@@ -27,7 +27,7 @@ foreach ((string, string) match in matches)
     if (enabled)
     {
         int[] operands = [.. match.Item2.Split(",").Select(v => int.Parse(v))];
-        enabledSum += (operands[0] * operands[1]);
+        enabledSum += operands[0] * operands[1];
     }
 }
 
